@@ -9,6 +9,6 @@
 
 angular.module('mgcrea.ngStrap.atooltip').run(['$templateCache', function($templateCache) {
 
-  $templateCache.put('atooltip/atooltip.tpl.html', '<div class="atooltip in" ng-show="title"><div class="atooltip-arrow"></div><div class="atooltip-inner" ng-bind="title"></div></div>');
+  $templateCache.put('atooltip/atooltip.tpl.html', '<div class="tooltip in" ng-show="title"><div class="tooltip-arrow"></div><div class="tooltip-inner" ng-bind="title"></div></div>');
 
 }]);
