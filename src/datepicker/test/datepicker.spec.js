@@ -634,7 +634,7 @@ describe('datepicker', function() {
       scope.isVisible = 'dropdown';
       scope.$digest();
       expect(sandboxEl.children('.dropdown-menu.datepicker').length).toBe(0);
-      scope.isVisible = 'datepicker,tooltip';
+      scope.isVisible = 'datepicker,atooltip';
       scope.$digest();
       expect(sandboxEl.children('.dropdown-menu.datepicker').length).toBe(1);
     });
@@ -680,11 +680,11 @@ describe('datepicker', function() {
       scope.$digest();
       myDatepicker.show();
 
-      expect(emit).toHaveBeenCalledWith('tooltip.show.before', myDatepicker);
+      expect(emit).toHaveBeenCalledWith('atooltip.show.before', myDatepicker);
       // show only fires AFTER the animation is complete
-      expect(emit).not.toHaveBeenCalledWith('tooltip.show', myDatepicker);
+      expect(emit).not.toHaveBeenCalledWith('atooltip.show', myDatepicker);
       $animate.triggerCallbacks();
-      expect(emit).toHaveBeenCalledWith('tooltip.show', myDatepicker);
+      expect(emit).toHaveBeenCalledWith('atooltip.show', myDatepicker);
     });
 
     it('should dispatch hide and hide.before events', function() {
@@ -695,17 +695,17 @@ describe('datepicker', function() {
       var emit = spyOn(myDatepicker.$scope, '$emit');
       myDatepicker.hide();
 
-      expect(emit).toHaveBeenCalledWith('tooltip.hide.before', myDatepicker);
+      expect(emit).toHaveBeenCalledWith('atooltip.hide.before', myDatepicker);
       // hide only fires AFTER the animation is complete
-      expect(emit).not.toHaveBeenCalledWith('tooltip.hide', myDatepicker);
+      expect(emit).not.toHaveBeenCalledWith('atooltip.hide', myDatepicker);
       $animate.triggerCallbacks();
-      expect(emit).toHaveBeenCalledWith('tooltip.hide', myDatepicker);
+      expect(emit).toHaveBeenCalledWith('atooltip.hide', myDatepicker);
     });
 
     it('should call show.before event with popover element instance id', function() {
       var elm = compileDirective('default-with-id');
       var id = "";
-      scope.$on('tooltip.show.before', function(evt, datepicker) {
+      scope.$on('atooltip.show.before', function(evt, datepicker) {
         id = datepicker.$id;
       });
 

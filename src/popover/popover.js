@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mgcrea.ngStrap.popover', ['mgcrea.ngStrap.tooltip'])
+angular.module('mgcrea.ngStrap.popover', ['mgcrea.ngStrap.atooltip'])
 
   .provider('$popover', function() {
 
@@ -21,14 +21,14 @@ angular.module('mgcrea.ngStrap.popover', ['mgcrea.ngStrap.tooltip'])
       autoClose: false
     };
 
-    this.$get = function($tooltip) {
+    this.$get = function($atooltip) {
 
       function PopoverFactory(element, config) {
 
         // Common vars
         var options = angular.extend({}, defaults, config);
 
-        var $popover = $tooltip(element, options);
+        var $popover = $atooltip(element, options);
 
         // Support scope as string options [/*title, */content]
         if(options.content) {

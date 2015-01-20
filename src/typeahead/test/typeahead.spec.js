@@ -211,7 +211,7 @@ describe('typeahead', function () {
       expect(sandboxEl.find('.dropdown-menu li:eq(0) a').html()).toBe(scope.icons[0].label);
       angular.element(sandboxEl.find('.dropdown-menu li:eq(0) a').get(0)).triggerHandler('click');
       expect(scope.selectedIcon).toBe(scope.icons[0]);
-      expect(elm.val()).toBe(jQuery('div').html(scope.icons[0].label).text().trim());
+      expect(elm.val()).toBe(jQuery(jQuery('div')[0]).html(scope.icons[0].label).text().trim());
     });
 
     it('should support custom objectValue markup', function() {
@@ -254,7 +254,7 @@ describe('typeahead', function () {
       expect(sandboxEl.find('.dropdown-menu li:eq(0) a').html()).toBe('1');
       angular.element(sandboxEl.find('.dropdown-menu li:eq(0) a').get(0)).triggerHandler('click');
       expect(scope.selectedState).toBe(scope.states[0]);
-      expect(elm.val()).toBe(jQuery('div').html(scope.states[0]).text().trim());
+      expect(elm.val()).toBe(jQuery(jQuery('div')[0]).html(scope.states[0]).text().trim());
     });
 
   });

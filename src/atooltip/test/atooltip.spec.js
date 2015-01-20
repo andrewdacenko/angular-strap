@@ -1,14 +1,14 @@
 'use strict';
 /* global countScopes */
 
-describe('tooltip', function() {
+describe('atooltip', function() {
 
   var bodyEl = $('body'), sandboxEl;
-  var $rootScope, $compile, $templateCache, $$rAF, $animate, $httpBackend, $tooltip, scope;
+  var $rootScope, $compile, $templateCache, $$rAF, $animate, $httpBackend, $atooltip, scope;
 
   beforeEach(module('ngAnimate'));
   beforeEach(module('ngAnimateMock'));
-  beforeEach(module('mgcrea.ngStrap.tooltip'));
+  beforeEach(module('mgcrea.ngStrap.atooltip'));
 
   beforeEach(inject(function($injector) {
     $rootScope = $injector.get('$rootScope');
@@ -17,7 +17,7 @@ describe('tooltip', function() {
     $$rAF = $injector.get('$$rAF');
     $animate = $injector.get('$animate');
     $httpBackend = $injector.get('$httpBackend');
-    $tooltip = $injector.get('$tooltip');
+    $atooltip = $injector.get('$atooltip');
 
     bodyEl.html('');
     sandboxEl = $('<div>').attr('id', 'sandbox').appendTo(bodyEl);
@@ -33,130 +33,130 @@ describe('tooltip', function() {
 
   var templates = {
     'default': {
-      scope: {tooltip: {title: 'Hello Tooltip!'}},
-      element: '<a title="{{tooltip.title}}" bs-tooltip>hover me</a>'
+      scope: {atooltip: {title: 'Hello Atooltip!'}},
+      element: '<a title="{{atooltip.title}}" bs-atooltip>hover me</a>'
     },
     'default-with-id': {
-      scope: {tooltip: {title: 'Hello Tooltip!'}},
-      element: '<a id="link1" title="{{tooltip.title}}" bs-tooltip>hover me</a>'
+      scope: {atooltip: {title: 'Hello Atooltip!'}},
+      element: '<a id="link1" title="{{atooltip.title}}" bs-atooltip>hover me</a>'
     },
     'markup-button': {
-      element: '<button type="button" bs-tooltip="tooltip">hover me</button>'
+      element: '<button type="button" bs-atooltip="atooltip">hover me</button>'
     },
     'markup-scope': {
-      element: '<a bs-tooltip="tooltip">hover me</a>'
+      element: '<a bs-atooltip="atooltip">hover me</a>'
     },
     'markup-ngRepeat': {
-      scope: {items: [{name: 'foo', tooltip: 'Hello Tooltip!'}]},
-      element: '<ul><li ng-repeat="item in items"><a title="{{item.tooltip}}" bs-tooltip>{{item.name}}</a></li></ul>'
+      scope: {items: [{name: 'foo', atooltip: 'Hello Atooltip!'}]},
+      element: '<ul><li ng-repeat="item in items"><a title="{{item.atooltip}}" bs-atooltip>{{item.name}}</a></li></ul>'
     },
     'markup-ngClick-service': {
-      element: '<a ng-click="showTooltip()">click me</a>'
+      element: '<a ng-click="showAtooltip()">click me</a>'
     },
     'options-delay': {
-      element: '<a data-delay="15" bs-tooltip="tooltip">hover me</a>'
+      element: '<a data-delay="15" bs-atooltip="atooltip">hover me</a>'
     },
     'options-delay-multiple': {
-      element: '<a data-delay="15,30" bs-tooltip="tooltip">hover me</a>'
+      element: '<a data-delay="15,30" bs-atooltip="atooltip">hover me</a>'
     },
     'options-keyboard': {
-      scope: {tooltip: {title: 'Hello Tooltip!', keyboard: true}},
-      element: '<a data-keyboard="true" bs-tooltip="tooltip">hover me</a>'
+      scope: {atooltip: {title: 'Hello Atooltip!', keyboard: true}},
+      element: '<a data-keyboard="true" bs-atooltip="atooltip">hover me</a>'
     },
     'options-animation': {
-      element: '<a data-animation="am-flip-x" bs-tooltip="tooltip">hover me</a>'
+      element: '<a data-animation="am-flip-x" bs-atooltip="atooltip">hover me</a>'
     },
     'options-placement-top': {
-      element: '<a data-placement="top" bs-tooltip="tooltip">hover me</a>'
+      element: '<a data-placement="top" bs-atooltip="atooltip">hover me</a>'
     },
     'options-placement-right': {
-      element: '<a data-placement="right" bs-tooltip="tooltip">hover me</a>'
+      element: '<a data-placement="right" bs-atooltip="atooltip">hover me</a>'
     },
     'options-placement-bottom': {
-      element: '<a data-placement="bottom" bs-tooltip="tooltip">hover me</a>'
+      element: '<a data-placement="bottom" bs-atooltip="atooltip">hover me</a>'
     },
     'options-placement-left': {
-      element: '<a data-placement="left" bs-tooltip="tooltip">hover me</a>'
+      element: '<a data-placement="left" bs-atooltip="atooltip">hover me</a>'
     },
     'options-placement-exotic-top-left': {
-      element: '<a data-placement="top-left" bs-tooltip="tooltip">hover me</a>'
+      element: '<a data-placement="top-left" bs-atooltip="atooltip">hover me</a>'
     },
     'options-placement-exotic-top-right': {
-      element: '<a data-placement="top-right" bs-tooltip="tooltip">hover me</a>'
+      element: '<a data-placement="top-right" bs-atooltip="atooltip">hover me</a>'
     },
     'options-placement-exotic-bottom-left': {
-      element: '<a data-placement="bottom-left" bs-tooltip="tooltip">hover me</a>'
+      element: '<a data-placement="bottom-left" bs-atooltip="atooltip">hover me</a>'
     },
     'options-placement-exotic-bottom-right': {
-      element: '<a data-placement="bottom-right" bs-tooltip="tooltip">hover me</a>'
+      element: '<a data-placement="bottom-right" bs-atooltip="atooltip">hover me</a>'
     },
     'options-placement-auto': {
-      element: '<a data-placement="auto" bs-tooltip="tooltip">hover me</a>'
+      element: '<a data-placement="auto" bs-atooltip="atooltip">hover me</a>'
     },
     'options-placement-auto-top': {
-      element: '<a data-placement="auto top" bs-tooltip="tooltip">hover me</a>'
+      element: '<a data-placement="auto top" bs-atooltip="atooltip">hover me</a>'
     },
     'options-placement-auto-right': {
-      element: '<a data-placement="auto right" bs-tooltip="tooltip">hover me</a>'
+      element: '<a data-placement="auto right" bs-atooltip="atooltip">hover me</a>'
     },
     'options-placement-auto-bottom': {
-      element: '<a data-placement="auto bottom" bs-tooltip="tooltip">hover me</a>'
+      element: '<a data-placement="auto bottom" bs-atooltip="atooltip">hover me</a>'
     },
     'options-placement-auto-left': {
-      element: '<a data-placement="auto left" bs-tooltip="tooltip">hover me</a>'
+      element: '<a data-placement="auto left" bs-atooltip="atooltip">hover me</a>'
     },
     'options-placement-auto-exotic-top-left': {
-      element: '<a data-placement="auto top-left" bs-tooltip="tooltip">hover me</a>'
+      element: '<a data-placement="auto top-left" bs-atooltip="atooltip">hover me</a>'
     },
     'options-placement-auto-exotic-top-right': {
-      element: '<a data-placement="auto top-right" bs-tooltip="tooltip">hover me</a>'
+      element: '<a data-placement="auto top-right" bs-atooltip="atooltip">hover me</a>'
     },
     'options-placement-auto-exotic-bottom-left': {
-      element: '<a data-placement="auto bottom-left" bs-tooltip="tooltip">hover me</a>'
+      element: '<a data-placement="auto bottom-left" bs-atooltip="atooltip">hover me</a>'
     },
     'options-placement-auto-exotic-bottom-right': {
-      element: '<a data-placement="auto bottom-right" bs-tooltip="tooltip">hover me</a>'
+      element: '<a data-placement="auto bottom-right" bs-atooltip="atooltip">hover me</a>'
     },
     'options-trigger': {
-      element: '<a data-trigger="click" bs-tooltip="tooltip">click me</a>'
+      element: '<a data-trigger="click" bs-atooltip="atooltip">click me</a>'
     },
     'options-html': {
-      element: '<a data-html="1" title="Hello Tooltip<br>This is a multiline message!" bs-tooltip>hover me</a>'
+      element: '<a data-html="1" title="Hello Atooltip<br>This is a multiline message!" bs-atooltip>hover me</a>'
     },
     'options-template': {
-      scope: {tooltip: {title: 'Hello Tooltip!', counter: 0}, items: ['foo', 'bar', 'baz']},
-      element: '<a title="{{tooltip.title}}" data-template="custom" bs-tooltip>hover me</a>'
+      scope: {atooltip: {title: 'Hello Atooltip!', counter: 0}, items: ['foo', 'bar', 'baz']},
+      element: '<a title="{{atooltip.title}}" data-template="custom" bs-atooltip>hover me</a>'
     },
     'options-contentTemplate': {
-      scope: {tooltip: {title: 'Hello Tooltip!', counter: 0}, items: ['foo', 'bar', 'baz']},
-      element: '<a title="{{tooltip.title}}" data-content-template="custom" bs-tooltip>hover me</a>'
+      scope: {atooltip: {title: 'Hello Atooltip!', counter: 0}, items: ['foo', 'bar', 'baz']},
+      element: '<a title="{{atooltip.title}}" data-content-template="custom" bs-atooltip>hover me</a>'
     },
     'bsShow-attr': {
-      scope: {tooltip: {title: 'Hello Tooltip!'}},
-      element: '<a title="{{tooltip.title}}" bs-tooltip bs-show="true">hover me</a>'
+      scope: {atooltip: {title: 'Hello Atooltip!'}},
+      element: '<a title="{{atooltip.title}}" bs-atooltip bs-show="true">hover me</a>'
     },
     'bsShow-binding': {
-      scope: {isVisible: false, tooltip: {title: 'Hello Tooltip!'}},
-      element: '<a title="{{tooltip.title}}" bs-tooltip bs-show="isVisible">hover me</a>'
+      scope: {isVisible: false, atooltip: {title: 'Hello Atooltip!'}},
+      element: '<a title="{{atooltip.title}}" bs-atooltip bs-show="isVisible">hover me</a>'
     },
     'bsEnabled-attr': {
-      scope: {tooltip: {title: 'Hello Tooltip!'}},
-      element: '<a title="{{tooltip.title}}" bs-tooltip bs-enabled="false">hover me</a>'
+      scope: {atooltip: {title: 'Hello Atooltip!'}},
+      element: '<a title="{{atooltip.title}}" bs-atooltip bs-enabled="false">hover me</a>'
     },
     'bsEnabled-attr-binding': {
-      scope: {tooltip: {title: 'Hello Tooltip!'}, isEnabled: true},
-      element: '<a title="{{tooltip.title}}" bs-tooltip bs-enabled="isEnabled">hover me</a>'
+      scope: {atooltip: {title: 'Hello Atooltip!'}, isEnabled: true},
+      element: '<a title="{{atooltip.title}}" bs-atooltip bs-enabled="isEnabled">hover me</a>'
     },
-    'bsTooltip-string': {
-      element: '<a bs-tooltip="tooltip.title">hover me</a>'
+    'bsAtooltip-string': {
+      element: '<a bs-atooltip="atooltip.title">hover me</a>'
     },
-    'bsTooltip-ngRepeat-string': {
-      scope: {items: [{name: 'foo', tooltip: 'Hello Tooltip!'}]},
-      element: '<ul><li ng-repeat="item in items"><a bs-tooltip="item.tooltip">{{item.name}}</a></li></ul>'
+    'bsAtooltip-ngRepeat-string': {
+      scope: {items: [{name: 'foo', atooltip: 'Hello Atooltip!'}]},
+      element: '<ul><li ng-repeat="item in items"><a bs-atooltip="item.atooltip">{{item.name}}</a></li></ul>'
     },
-    'bsTooltip-noValue': {
+    'bsAtooltip-noValue': {
       scope: {title: 'Inherited Title'},
-      element: '<a bs-tooltip>hover me</a>'
+      element: '<a bs-atooltip>hover me</a>'
     }
   };
 
@@ -194,21 +194,20 @@ describe('tooltip', function() {
       var elm = compileDirective('default');
       angular.element(elm[0]).triggerHandler('mouseenter');
       $animate.triggerCallbacks();
-      expect(sandboxEl.find('.tooltip-inner').html()).toBe(scope.tooltip.title);
+      expect(sandboxEl.find('.tooltip-inner').html()).toBe(scope.atooltip.title);
     });
 
     it('should support scope as object', function() {
       var elm = compileDirective('markup-scope');
       angular.element(elm[0]).triggerHandler('mouseenter');
       $animate.triggerCallbacks();
-      expect(sandboxEl.find('.tooltip-inner').html()).toBe(scope.tooltip.title);
+      expect(sandboxEl.find('.tooltip-inner').html()).toBe(scope.atooltip.title);
     });
 
     it('should support ngRepeat markup', function() {
       var elm = compileDirective('markup-ngRepeat');
-      angular.element(elm.find('[bs-tooltip]')).triggerHandler('mouseenter');
-      $animate.triggerCallbacks();
-      expect(sandboxEl.find('.tooltip-inner').html()).toBe(scope.items[0].tooltip);
+      angular.element(elm.find('[bs-atooltip]')).triggerHandler('mouseenter');
+      expect(sandboxEl.find('.tooltip-inner').html()).toBe(scope.items[0].atooltip);
     });
 
     it('should support button markup', function() {
@@ -308,7 +307,7 @@ describe('tooltip', function() {
       scope.isVisible = 'dropdown';
       scope.$digest();
       expect(sandboxEl.children('.tooltip').length).toBe(0);
-      scope.isVisible = 'datepicker,tooltip';
+      scope.isVisible = 'datepicker,atooltip';
       scope.$digest();
       expect(sandboxEl.children('.tooltip').length).toBe(1);
     });
@@ -389,7 +388,7 @@ describe('tooltip', function() {
       angular.element(elm[0]).triggerHandler('mouseenter');
       expect(sandboxEl.children('.tooltip').length).toBe(0);
       angular.element(elm[0]).triggerHandler('mouseleave');
-      scope.isEnabled = 'tooltip';
+      scope.isEnabled = 'atooltip';
       scope.$digest();
       angular.element(elm[0]).triggerHandler('mouseenter');
       expect(sandboxEl.children('.tooltip').length).toBe(1);
@@ -397,24 +396,24 @@ describe('tooltip', function() {
 
   });
 
-  describe('bsTooltip attribute', function() {
+  describe('bsAtooltip attribute', function() {
 
     it('should support string value', function() {
-      var elm = compileDirective('bsTooltip-string');
+      var elm = compileDirective('bsAtooltip-string');
       angular.element(elm[0]).triggerHandler('mouseenter');
       $animate.triggerCallbacks();
-      expect(sandboxEl.find('.tooltip-inner').html()).toBe(scope.tooltip.title);
+      expect(sandboxEl.find('.tooltip-inner').html()).toBe(scope.atooltip.title);
     });
 
     it('should support string value from within ngRepeat markup', function() {
-      var elm = compileDirective('bsTooltip-ngRepeat-string');
-      angular.element(elm.find('[bs-tooltip]')).triggerHandler('mouseenter');
+      var elm = compileDirective('bsAtooltip-ngRepeat-string');
+      angular.element(elm.find('[bs-atooltip]')).triggerHandler('mouseenter');
       $animate.triggerCallbacks();
-      expect(sandboxEl.find('.tooltip-inner').html()).toBe(scope.items[0].tooltip);
+      expect(sandboxEl.find('.tooltip-inner').html()).toBe(scope.items[0].atooltip);
     });
 
     it('should overwrite inherited title when no value specified', function() {
-      var elm = compileDirective('bsTooltip-noValue');
+      var elm = compileDirective('bsAtooltip-noValue');
       angular.element(elm[0]).triggerHandler('mouseenter');
       $animate.triggerCallbacks();
       expect(sandboxEl.find('.tooltip-inner').html()).toBe('');
@@ -425,52 +424,52 @@ describe('tooltip', function() {
   describe('using service', function() {
 
     it('should correctly open on next digest', function() {
-      var myTooltip = $tooltip(sandboxEl, templates['default'].scope.tooltip);
+      var myAtooltip = $atooltip(sandboxEl, templates['default'].scope.atooltip);
       scope.$digest();
       expect(bodyEl.children('.tooltip').length).toBe(0);
-      myTooltip.show();
+      myAtooltip.show();
       $animate.triggerCallbacks();
       expect(bodyEl.children('.tooltip').length).toBe(1);
-      myTooltip.hide();
+      myAtooltip.hide();
       expect(bodyEl.children('.tooltip').length).toBe(0);
     });
 
     it('should open if option show is true', function() {
-      var options = angular.extend({ show: true }, templates['default'].scope.tooltip);
-      var myTooltip = $tooltip(sandboxEl, options);
+      var options = angular.extend({ show: true }, templates['default'].scope.atooltip);
+      var myAtooltip = $atooltip(sandboxEl, options);
       scope.$digest();
       $animate.triggerCallbacks();
       expect(bodyEl.children('.tooltip').length).toBe(1);
-      myTooltip.hide();
+      myAtooltip.hide();
       scope.$digest();
       $animate.triggerCallbacks();
       expect(bodyEl.children('.tooltip').length).toBe(0);
     });
 
     it('should do nothing when hiding an already hidden popup', function() {
-      var myTooltip = $tooltip(sandboxEl, templates['default'].scope.tooltip);
+      var myAtooltip = $atooltip(sandboxEl, templates['default'].scope.atooltip);
       scope.$digest();
       expect(function() {
-        myTooltip.hide();
+        myAtooltip.hide();
       }).not.toThrow();
     });
 
     it('should correctly be destroyed', function() {
-      var myTooltip = $tooltip(sandboxEl, templates['default'].scope.tooltip);
+      var myAtooltip = $atooltip(sandboxEl, templates['default'].scope.atooltip);
       scope.$digest();
       expect(bodyEl.children('.tooltip').length).toBe(0);
-      myTooltip.show();
+      myAtooltip.show();
       expect(bodyEl.children('.tooltip').length).toBe(1);
-      myTooltip.destroy();
+      myAtooltip.destroy();
       expect(bodyEl.children('.tooltip').length).toBe(0);
       expect(bodyEl.children().length).toBe(1);
     });
 
     it('should correctly work with ngClick', function() {
       var elm = compileDirective('markup-ngClick-service');
-      var myTooltip = $tooltip(sandboxEl, templates['default'].scope.tooltip);
-      scope.showTooltip = function() {
-        myTooltip.$promise.then(myTooltip.show);
+      var myAtooltip = $atooltip(sandboxEl, templates['default'].scope.atooltip);
+      scope.showAtooltip = function() {
+        myAtooltip.$promise.then(myAtooltip.show);
       };
       expect(bodyEl.children('.tooltip').length).toBe(0);
       angular.element(elm[0]).triggerHandler('click');
@@ -480,9 +479,9 @@ describe('tooltip', function() {
     it('should correctly work with ngClick with an isolated scope', function() {
       scope = scope.$new(true);
       var elm = compileDirective('markup-ngClick-service');
-      var myTooltip = $tooltip(sandboxEl, {scope:scope, trigger: 'manual'});
-      scope.showTooltip = function() {
-        myTooltip.$promise.then(myTooltip.show);
+      var myAtooltip = $atooltip(sandboxEl, {scope:scope, trigger: 'manual'});
+      scope.showAtooltip = function() {
+        myAtooltip.$promise.then(myAtooltip.show);
       };
       expect(bodyEl.children('.tooltip').length).toBe(0);
       angular.element(elm[0]).triggerHandler('click');
@@ -490,13 +489,13 @@ describe('tooltip', function() {
     });
 
     it('should store config id value in instance', function() {
-      var myTooltip = $tooltip(sandboxEl, {scope:scope, trigger: 'manual', id: 'instance1'});
-      expect(myTooltip.$id).toBe('instance1');
+      var myAtooltip = $atooltip(sandboxEl, {scope:scope, trigger: 'manual', id: 'instance1'});
+      expect(myAtooltip.$id).toBe('instance1');
     });
 
     it('should fallback to element id value when id is not provided in config', function() {
-      var myTooltip = $tooltip(sandboxEl, {scope:scope, trigger: 'manual'});
-      expect(myTooltip.$id).toBe('sandbox');
+      var myAtooltip = $atooltip(sandboxEl, {scope:scope, trigger: 'manual'});
+      expect(myAtooltip.$id).toBe('sandbox');
     });
 
   });
@@ -558,51 +557,51 @@ describe('tooltip', function() {
   describe('show / hide events', function() {
 
     it('should dispatch show and show.before events', function() {
-      var myTooltip = $tooltip(sandboxEl, templates['default'].scope.tooltip);
-      var emit = spyOn(myTooltip.$scope, '$emit');
+      var myAtooltip = $atooltip(sandboxEl, templates['default'].scope.atooltip);
+      var emit = spyOn(myAtooltip.$scope, '$emit');
       scope.$digest();
-      myTooltip.show();
+      myAtooltip.show();
 
-      expect(emit).toHaveBeenCalledWith('tooltip.show.before', myTooltip);
+      expect(emit).toHaveBeenCalledWith('atooltip.show.before', myAtooltip);
       // show only fires AFTER the animation is complete
-      expect(emit).not.toHaveBeenCalledWith('tooltip.show', myTooltip);
+      expect(emit).not.toHaveBeenCalledWith('atooltip.show', myAtooltip);
       $animate.triggerCallbacks();
-      expect(emit).toHaveBeenCalledWith('tooltip.show', myTooltip);
+      expect(emit).toHaveBeenCalledWith('atooltip.show', myAtooltip);
     });
 
     it('should dispatch hide and hide.before events', function() {
-      var myTooltip = $tooltip(sandboxEl, templates['default'].scope.tooltip);
+      var myAtooltip = $atooltip(sandboxEl, templates['default'].scope.atooltip);
       scope.$digest();
-      myTooltip.show();
+      myAtooltip.show();
 
-      var emit = spyOn(myTooltip.$scope, '$emit');
-      myTooltip.hide();
+      var emit = spyOn(myAtooltip.$scope, '$emit');
+      myAtooltip.hide();
 
-      expect(emit).toHaveBeenCalledWith('tooltip.hide.before', myTooltip);
+      expect(emit).toHaveBeenCalledWith('atooltip.hide.before', myAtooltip);
       // hide only fires AFTER the animation is complete
-      expect(emit).not.toHaveBeenCalledWith('tooltip.hide', myTooltip);
+      expect(emit).not.toHaveBeenCalledWith('atooltip.hide', myAtooltip);
       $animate.triggerCallbacks();
-      expect(emit).toHaveBeenCalledWith('tooltip.hide', myTooltip);
+      expect(emit).toHaveBeenCalledWith('atooltip.hide', myAtooltip);
     });
 
     it('should namespace show/hide events using the prefixEvent', function() {
-      var myTooltip = $tooltip(sandboxEl, angular.extend({prefixEvent: 'datepicker'}, templates['default'].scope.tooltip));
-      var emit = spyOn(myTooltip.$scope, '$emit');
+      var myAtooltip = $atooltip(sandboxEl, angular.extend({prefixEvent: 'datepicker'}, templates['default'].scope.atooltip));
+      var emit = spyOn(myAtooltip.$scope, '$emit');
       scope.$digest();
-      myTooltip.show();
-      myTooltip.hide();
+      myAtooltip.show();
+      myAtooltip.hide();
       $animate.triggerCallbacks();
 
-      expect(emit).toHaveBeenCalledWith('datepicker.show.before', myTooltip);
-      expect(emit).toHaveBeenCalledWith('datepicker.show', myTooltip);
-      expect(emit).toHaveBeenCalledWith('datepicker.hide.before', myTooltip);
-      expect(emit).toHaveBeenCalledWith('datepicker.hide', myTooltip);
+      expect(emit).toHaveBeenCalledWith('datepicker.show.before', myAtooltip);
+      expect(emit).toHaveBeenCalledWith('datepicker.show', myAtooltip);
+      expect(emit).toHaveBeenCalledWith('datepicker.hide.before', myAtooltip);
+      expect(emit).toHaveBeenCalledWith('datepicker.hide', myAtooltip);
     });
 
     it('should be invisible until it is positioned', inject(function ($$rAF) {
-      var myTooltip = $tooltip(sandboxEl, templates['default'].scope.tooltip);
+      var myAtooltip = $atooltip(sandboxEl, templates['default'].scope.atooltip);
       scope.$digest();
-      myTooltip.show();
+      myAtooltip.show();
 
       expect(bodyEl.children('.tooltip').css('visibility')).toBe('hidden');
 
@@ -611,11 +610,11 @@ describe('tooltip', function() {
       expect(bodyEl.children('.tooltip').css('visibility')).toBe('visible');
     }));
 
-    it('should call show.before event with tooltip element instance id', function() {
+    it('should call show.before event with atooltip element instance id', function() {
       var elm = compileDirective('default-with-id');
       var id = "";
-      scope.$on('tooltip.show.before', function(evt, tooltip) {
-        id = tooltip.$id;
+      scope.$on('atooltip.show.before', function(evt, atooltip) {
+        id = atooltip.$id;
       });
 
       angular.element(elm[0]).triggerHandler('mouseenter');
@@ -674,33 +673,33 @@ describe('tooltip', function() {
     describe('keyboard', function() {
 
       it('should dismiss and stopPropagation if ESC is pressed when trigger !== "focus"', function() {
-        var myTooltip = $tooltip(sandboxEl, angular.extend({trigger: 'click'}, templates['options-keyboard'].scope.tooltip));
+        var myAtooltip = $atooltip(sandboxEl, angular.extend({trigger: 'click'}, templates['options-keyboard'].scope.atooltip));
         scope.$digest();
         expect(bodyEl.children('.tooltip').length).toBe(0);
-        myTooltip.show();
+        myAtooltip.show();
         expect(bodyEl.children('.tooltip').length).toBe(1);
         var evt = jQuery.Event( 'keyup', { keyCode: 27, which: 27 } );
         spyOn(evt, 'stopPropagation');
-        myTooltip.$onKeyUp(evt);
+        myAtooltip.$onKeyUp(evt);
         expect(bodyEl.children('.tooltip').length).toBe(0);
         expect(evt.stopPropagation).toHaveBeenCalled();
       });
 
-      it('should NOT stopPropagation if ESC is pressed while tooltip is hidden', function() {
-        var myTooltip = $tooltip(sandboxEl, angular.extend({trigger: 'click'}, templates['options-keyboard'].scope.tooltip));
+      it('should NOT stopPropagation if ESC is pressed while atooltip is hidden', function() {
+        var myAtooltip = $atooltip(sandboxEl, angular.extend({trigger: 'click'}, templates['options-keyboard'].scope.atooltip));
         scope.$digest();
         var evt = jQuery.Event( 'keyup', { keyCode: 27, which: 27 } );
         spyOn(evt, 'stopPropagation');
-        myTooltip.$onKeyUp(evt);
+        myAtooltip.$onKeyUp(evt);
         expect(evt.stopPropagation).not.toHaveBeenCalled();
       });
 
       it('should blur and stopPropagation if ESC is pressed when trigger === "focus"', function() {
-        var myTooltip = $tooltip(sandboxEl, angular.extend({trigger: 'focus'}, templates['options-keyboard'].scope.tooltip));
+        var myAtooltip = $atooltip(sandboxEl, angular.extend({trigger: 'focus'}, templates['options-keyboard'].scope.atooltip));
         spyOn(sandboxEl[0], 'blur');
         var evt = jQuery.Event( 'keyup', { keyCode: 27, which: 27 } );
         spyOn(evt, 'stopPropagation');
-        myTooltip.$onFocusKeyUp(evt);
+        myAtooltip.$onFocusKeyUp(evt);
         expect(sandboxEl[0].blur).toHaveBeenCalled();
         expect(evt.stopPropagation).toHaveBeenCalled();
       });
@@ -792,7 +791,7 @@ describe('tooltip', function() {
       it('should correctly compile inner content', function() {
         var elm = compileDirective('options-html');
         angular.element(elm[0]).triggerHandler('mouseenter');
-        expect(sandboxEl.find('.tooltip-inner').html()).toBe('Hello Tooltip<br>This is a multiline message!');
+        expect(sandboxEl.find('.tooltip-inner').html()).toBe('Hello Atooltip<br>This is a multiline message!');
       });
 
     });
@@ -803,7 +802,7 @@ describe('tooltip', function() {
         $templateCache.put('custom', '<div class="tooltip"><div class="tooltip-inner">foo: {{title}}</div></div>');
         var elm = compileDirective('options-template');
         angular.element(elm[0]).triggerHandler('mouseenter');
-        expect(sandboxEl.find('.tooltip-inner').text()).toBe('foo: ' + scope.tooltip.title);
+        expect(sandboxEl.find('.tooltip-inner').text()).toBe('foo: ' + scope.atooltip.title);
       });
 
       it('should request custom template via $http', function() {
@@ -811,7 +810,7 @@ describe('tooltip', function() {
         var elm = compileDirective('options-template');
         $httpBackend.flush();
         angular.element(elm[0]).triggerHandler('mouseenter');
-        expect(sandboxEl.find('.tooltip-inner').text()).toBe('foo: ' + scope.tooltip.title);
+        expect(sandboxEl.find('.tooltip-inner').text()).toBe('foo: ' + scope.atooltip.title);
       });
 
       it('should request custom template via $http only once', function() {
@@ -820,7 +819,7 @@ describe('tooltip', function() {
         var elmBis = compileDirective('options-template');
         $httpBackend.flush();
         angular.element(elm[0]).triggerHandler('mouseenter');
-        expect(sandboxEl.find('.tooltip-inner').text()).toBe('foo: ' + scope.tooltip.title);
+        expect(sandboxEl.find('.tooltip-inner').text()).toBe('foo: ' + scope.atooltip.title);
       });
 
       it('should support template with ngRepeat', function() {
@@ -835,16 +834,16 @@ describe('tooltip', function() {
       });
 
       it('should support template with ngClick', function() {
-        $templateCache.put('custom', '<div class="tooltip"><div class="tooltip-inner"><a class="btn" ng-click="tooltip.counter=tooltip.counter+1">click me</a></div></div>');
+        $templateCache.put('custom', '<div class="tooltip"><div class="tooltip-inner"><a class="btn" ng-click="atooltip.counter=atooltip.counter+1">click me</a></div></div>');
         var elm = compileDirective('options-template');
         angular.element(elm[0]).triggerHandler('mouseenter');
         expect(angular.element(sandboxEl.find('.tooltip-inner > .btn')[0]).triggerHandler('click'));
-        expect(scope.tooltip.counter).toBe(1);
+        expect(scope.atooltip.counter).toBe(1);
         // Consecutive toggles
         angular.element(elm[0]).triggerHandler('mouseleave');
         angular.element(elm[0]).triggerHandler('mouseenter');
         expect(angular.element(sandboxEl.find('.tooltip-inner > .btn')[0]).triggerHandler('click'));
-        expect(scope.tooltip.counter).toBe(2);
+        expect(scope.atooltip.counter).toBe(2);
       });
 
     });
@@ -857,7 +856,7 @@ describe('tooltip', function() {
         var elm = compileDirective('options-contentTemplate');
         angular.element(elm[0]).triggerHandler('mouseenter');
         // @TODO fixme
-        // expect(sandboxEl.find('.tooltip-inner').text()).toBe('foo: ' + scope.tooltip.title);
+        // expect(sandboxEl.find('.tooltip-inner').text()).toBe('foo: ' + scope.atooltip.title);
       });
 
     });
@@ -866,9 +865,9 @@ describe('tooltip', function() {
       it('accepts element object', function() {
         var testElm = angular.element('<div></div>');
         sandboxEl.append(testElm);
-        var myTooltip = $tooltip(sandboxEl, angular.extend({}, templates['default'].scope.tooltip, {container: testElm}));
+        var myAtooltip = $atooltip(sandboxEl, angular.extend({}, templates['default'].scope.atooltip, {container: testElm}));
         scope.$digest();
-        myTooltip.show();
+        myAtooltip.show();
         $animate.triggerCallbacks();
         expect(angular.element(testElm.children()[0]).hasClass('tooltip')).toBeTruthy();
       });
@@ -898,7 +897,7 @@ describe('tooltip', function() {
       expect(tip[0].style.left).toBe('-9999px');
     });
 
-    it('should position the tooltip above the target when placement is `top`', function () {
+    it('should position the atooltip above the target when placement is `top`', function () {
       var elm = compileDirective('options-placement-top');
       angular.element(elm[0]).triggerHandler('mouseenter');
 
@@ -914,7 +913,7 @@ describe('tooltip', function() {
       expect(tipElement[0].style.left).toBe('35px')
     });
 
-    it('should position the tooltip to the right of the target when placement is `right`', function () {
+    it('should position the atooltip to the right of the target when placement is `right`', function () {
       var elm = compileDirective('options-placement-right');
       angular.element(elm[0]).triggerHandler('mouseenter');
 
@@ -930,7 +929,7 @@ describe('tooltip', function() {
       expect(tipElement[0].style.left).toBe('110px')
     });
 
-    it('should position the tooltip below the target when placement is `bottom`', function () {
+    it('should position the atooltip below the target when placement is `bottom`', function () {
       var elm = compileDirective('options-placement-bottom');
       angular.element(elm[0]).triggerHandler('mouseenter');
 
@@ -946,7 +945,7 @@ describe('tooltip', function() {
       expect(tipElement[0].style.left).toBe('35px')
     });
 
-    it('should position the tooltip to the left of the target when placement is `left`', function () {
+    it('should position the atooltip to the left of the target when placement is `left`', function () {
       var elm = compileDirective('options-placement-left');
       angular.element(elm[0]).triggerHandler('mouseenter');
 
@@ -962,7 +961,7 @@ describe('tooltip', function() {
       expect(tipElement[0].style.left).toBe('-40px')
     });
 
-    it('should position the tooltip to the top-left of the target when placement is `top-left`', function () {
+    it('should position the atooltip to the top-left of the target when placement is `top-left`', function () {
       var elm = compileDirective('options-placement-exotic-top-left');
       angular.element(elm[0]).triggerHandler('mouseenter');
 
@@ -978,7 +977,7 @@ describe('tooltip', function() {
       expect(tipElement[0].style.left).toBe('10px')
     });
 
-    it('should position the tooltip to the top-right of the target when placement is `top-right`', function () {
+    it('should position the atooltip to the top-right of the target when placement is `top-right`', function () {
       var elm = compileDirective('options-placement-exotic-top-right');
       angular.element(elm[0]).triggerHandler('mouseenter');
 
@@ -994,7 +993,7 @@ describe('tooltip', function() {
       expect(tipElement[0].style.left).toBe('60px')
     });
 
-    it('should position the tooltip to the bottom-left of the target when placement is `bottom-left`', function () {
+    it('should position the atooltip to the bottom-left of the target when placement is `bottom-left`', function () {
       var elm = compileDirective('options-placement-exotic-bottom-left');
       angular.element(elm[0]).triggerHandler('mouseenter');
 
@@ -1010,7 +1009,7 @@ describe('tooltip', function() {
       expect(tipElement[0].style.left).toBe('10px')
     });
 
-    it('should position the tooltip to the bottom-right of the target when placement is `bottom-right`', function () {
+    it('should position the atooltip to the bottom-right of the target when placement is `bottom-right`', function () {
       var elm = compileDirective('options-placement-exotic-bottom-right');
       angular.element(elm[0]).triggerHandler('mouseenter');
 
@@ -1036,7 +1035,7 @@ describe('tooltip', function() {
       $window = _$window_;
     }));
 
-    it('should position the tooltip below the target when initial placement results in positioning off screen', function () {
+    it('should position the atooltip below the target when initial placement results in positioning off screen', function () {
       var elm = compileDirective('options-placement-auto-top');
       angular.element(elm[0]).triggerHandler('mouseenter');
 
@@ -1055,7 +1054,7 @@ describe('tooltip', function() {
       expect(tipElement[0].style.left).toBe('35px')
     });
 
-    it('should position the tooltip above the target when initial placement results in positioning off screen', function () {
+    it('should position the atooltip above the target when initial placement results in positioning off screen', function () {
       var elm = compileDirective('options-placement-auto-bottom');
       angular.element(elm[0]).triggerHandler('mouseenter');
 
@@ -1074,7 +1073,7 @@ describe('tooltip', function() {
       expect(tipElement[0].style.left).toBe('35px')
     });
 
-    it('should position the tooltip to the right of the target when initial placement results in positioning off screen', function () {
+    it('should position the atooltip to the right of the target when initial placement results in positioning off screen', function () {
       var elm = compileDirective('options-placement-auto-left');
       angular.element(elm[0]).triggerHandler('mouseenter');
 
@@ -1093,7 +1092,7 @@ describe('tooltip', function() {
       expect(tipElement[0].style.left).toBe('110px')
     });
 
-    it('should position the tooltip to the left of the target when initial placement results in positioning off screen', function () {
+    it('should position the atooltip to the left of the target when initial placement results in positioning off screen', function () {
       var elm = compileDirective('options-placement-auto-right');
       angular.element(elm[0]).triggerHandler('mouseenter');
 

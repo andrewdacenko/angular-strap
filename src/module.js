@@ -8,7 +8,7 @@ angular.module('mgcrea.ngStrap', [
   'mgcrea.ngStrap.datepicker',
   'mgcrea.ngStrap.timepicker',
   'mgcrea.ngStrap.navbar',
-  'mgcrea.ngStrap.tooltip',
+  'mgcrea.ngStrap.atooltip',
   'mgcrea.ngStrap.popover',
   'mgcrea.ngStrap.dropdown',
   'mgcrea.ngStrap.typeahead',

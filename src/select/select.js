@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mgcrea.ngStrap.select', ['mgcrea.ngStrap.tooltip', 'mgcrea.ngStrap.helpers.parseOptions'])
+angular.module('mgcrea.ngStrap.select', ['mgcrea.ngStrap.atooltip', 'mgcrea.ngStrap.helpers.parseOptions'])
 
   .provider('$select', function() {
 
@@ -27,7 +27,7 @@ angular.module('mgcrea.ngStrap.select', ['mgcrea.ngStrap.tooltip', 'mgcrea.ngStr
       iconCheckmark: 'glyphicon glyphicon-ok'
     };
 
-    this.$get = function($window, $document, $rootScope, $tooltip, $timeout) {
+    this.$get = function($window, $document, $rootScope, $atooltip, $timeout) {
 
       var bodyEl = angular.element($window.document.body);
       var isNative = /(ip(a|o)d|iphone|android)/ig.test($window.navigator.userAgent);
@@ -44,7 +44,7 @@ angular.module('mgcrea.ngStrap.select', ['mgcrea.ngStrap.tooltip', 'mgcrea.ngStr
         // when binded to interpolated value
         options.sort = options.sort.toString().match(/true|1/i);
 
-        $select = $tooltip(element, options);
+        $select = $atooltip(element, options);
         var scope = $select.$scope;
 
         scope.$matches = [];

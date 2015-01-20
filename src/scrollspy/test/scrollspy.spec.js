@@ -1,5 +1,5 @@
 'use strict';
-// https://github.com/angular-ui/bootstrap/blob/master/src/tooltip/test/tooltip.spec.js
+// https://github.com/angular-ui/bootstrap/blob/master/src/atooltip/test/atooltip.spec.js
 
 describe('affix', function () {
 

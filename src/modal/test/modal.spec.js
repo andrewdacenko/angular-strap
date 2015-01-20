@@ -200,7 +200,7 @@ describe('modal', function() {
       elmScope.$toggle();
       $animate.triggerCallbacks();
       scope.$digest();
-      expect(sandboxEl.children('.tooltip').length).toBe(0);
+      expect(sandboxEl.children('.atooltip').length).toBe(0);
       expect(elmScope.$isShown).toBeFalsy();
     });
 

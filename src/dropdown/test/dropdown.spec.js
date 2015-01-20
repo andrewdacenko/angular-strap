@@ -215,7 +215,7 @@ describe('dropdown', function () {
       scope.isVisible = 'TRUE';
       scope.$digest();
       expect(sandboxEl.children('.dropdown-menu').length).toBe(1);
-      scope.isVisible = 'tooltip';
+      scope.isVisible = 'atooltip';
       scope.$digest();
       expect(sandboxEl.children('.dropdown-menu').length).toBe(0);
       scope.isVisible = 'dropdown,datepicker';
@@ -242,11 +242,11 @@ describe('dropdown', function () {
       scope.$digest();
       myDropdown.show();
 
-      expect(emit).toHaveBeenCalledWith('tooltip.show.before', myDropdown);
+      expect(emit).toHaveBeenCalledWith('atooltip.show.before', myDropdown);
       // show only fires AFTER the animation is complete
-      expect(emit).not.toHaveBeenCalledWith('tooltip.show', myDropdown);
+      expect(emit).not.toHaveBeenCalledWith('atooltip.show', myDropdown);
       $animate.triggerCallbacks();
-      expect(emit).toHaveBeenCalledWith('tooltip.show', myDropdown);
+      expect(emit).toHaveBeenCalledWith('atooltip.show', myDropdown);
     });
 
     it('should dispatch hide and hide.before events', function() {
@@ -257,17 +257,17 @@ describe('dropdown', function () {
       var emit = spyOn(myDropdown.$scope, '$emit');
       myDropdown.hide();
 
-      expect(emit).toHaveBeenCalledWith('tooltip.hide.before', myDropdown);
+      expect(emit).toHaveBeenCalledWith('atooltip.hide.before', myDropdown);
       // hide only fires AFTER the animation is complete
-      expect(emit).not.toHaveBeenCalledWith('tooltip.hide', myDropdown);
+      expect(emit).not.toHaveBeenCalledWith('atooltip.hide', myDropdown);
       $animate.triggerCallbacks();
-      expect(emit).toHaveBeenCalledWith('tooltip.hide', myDropdown);
+      expect(emit).toHaveBeenCalledWith('atooltip.hide', myDropdown);
     });
 
     it('should call show.before event with dropdown element instance id', function() {
       var elm = compileDirective('default-with-id');
       var id = "";
-      scope.$on('tooltip.show.before', function(evt, dropdown) {
+      scope.$on('atooltip.show.before', function(evt, dropdown) {
         id = dropdown.$id;
       });
 

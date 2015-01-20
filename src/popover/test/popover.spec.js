@@ -193,11 +193,11 @@ describe('popover', function () {
       scope.$digest();
       myPopover.show();
 
-      expect(emit).toHaveBeenCalledWith('tooltip.show.before', myPopover);
+      expect(emit).toHaveBeenCalledWith('atooltip.show.before', myPopover);
       // show only fires AFTER the animation is complete
-      expect(emit).not.toHaveBeenCalledWith('tooltip.show', myPopover);
+      expect(emit).not.toHaveBeenCalledWith('atooltip.show', myPopover);
       $animate.triggerCallbacks();
-      expect(emit).toHaveBeenCalledWith('tooltip.show', myPopover);
+      expect(emit).toHaveBeenCalledWith('atooltip.show', myPopover);
     });
 
     it('should dispatch hide and hide.before events', function() {
@@ -208,17 +208,17 @@ describe('popover', function () {
       var emit = spyOn(myPopover.$scope, '$emit');
       myPopover.hide();
 
-      expect(emit).toHaveBeenCalledWith('tooltip.hide.before', myPopover);
+      expect(emit).toHaveBeenCalledWith('atooltip.hide.before', myPopover);
       // hide only fires AFTER the animation is complete
-      expect(emit).not.toHaveBeenCalledWith('tooltip.hide', myPopover);
+      expect(emit).not.toHaveBeenCalledWith('atooltip.hide', myPopover);
       $animate.triggerCallbacks();
-      expect(emit).toHaveBeenCalledWith('tooltip.hide', myPopover);
+      expect(emit).toHaveBeenCalledWith('atooltip.hide', myPopover);
     });
 
     it('should call show.before event with popover element instance id', function() {
       var elm = compileDirective('default-with-id');
       var id = "";
-      scope.$on('tooltip.show.before', function(evt, popover) {
+      scope.$on('atooltip.show.before', function(evt, popover) {
         id = popover.$id;
       });
 

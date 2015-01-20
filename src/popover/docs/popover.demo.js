@@ -15,10 +15,10 @@ angular.module('mgcrea.ngStrapDocs')
   // Controller usage example
   /*
   var myPopover = $popover(angular.element(document.querySelector('#test')), {title: 'Title', content: 'Hello Popover<br />This is a multiline message!', placement: 'right'});
-  $scope.showTooltip = function() {
+  $scope.showAtooltip = function() {
     myPopover.$promise.then(myPopover.show);
   };
-  $scope.hideTooltip = function() {
+  $scope.hideAtooltip = function() {
     myPopover.$promise.then(myPopover.hide);
   };
   */

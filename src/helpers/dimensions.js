@@ -36,7 +36,7 @@ angular.module('mgcrea.ngStrap.helpers.dimensions', [])
 
     /**
      * Provides read-only equivalent of jQuery's offset function:
-     * @required-by bootstrap-tooltip, bootstrap-affix
+     * @required-by bootstrap-atooltip, bootstrap-affix
      * @url http://api.jquery.com/offset/
      * @param element
      */
@@ -53,7 +53,7 @@ angular.module('mgcrea.ngStrap.helpers.dimensions', [])
 
     /**
      * Provides read-only equivalent of jQuery's position function
-     * @required-by bootstrap-tooltip, bootstrap-affix
+     * @required-by bootstrap-atooltip, bootstrap-affix
      * @url http://api.jquery.com/offset/
      * @param element
      */
